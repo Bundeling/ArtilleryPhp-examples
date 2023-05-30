@@ -1,0 +1,19 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 600
+      arrivalRate: 25
+  plugins:
+    http-file-uploads: {  }
+  variables:
+    filename:
+      - artillery-logo.jpg
+      - artillery-installation.pdf
+      - sre-fundamental-rules.png
+scenarios:
+  - flow:
+      - post:
+          url: /upload
+          formData:
+            document:
+              fromFile: './files/{{ filename }}'

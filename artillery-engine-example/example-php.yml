@@ -1,0 +1,17 @@
+config:
+  target: system-under-test-endpoint
+  example:
+    mandatoryString: 'a configuration setting for our engine'
+  phases:
+    - arrivalRate: 1
+      duration: 1
+  engines:
+    example: {  }
+scenarios:
+  - name: 'A scenario using the custom ''example'' engine'
+    engine: example
+    flow:
+      - doSomething:
+          id: 123
+      - doSomething:
+          id: 456

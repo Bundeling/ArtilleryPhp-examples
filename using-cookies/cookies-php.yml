@@ -1,0 +1,50 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 600
+      arrivalRate: 25
+  variables:
+    email:
+      - testuser1@artillery.io
+      - testuser2@artillery.io
+      - testuser3@artillery.io
+      - testuser4@artillery.io
+      - testuser5@artillery.io
+scenarios:
+  - name: 'Login and verify cookie'
+    flow:
+      - post:
+          url: /login
+          json:
+            email: '{{ email }}'
+            password: test-password-123
+      - get:
+          url: /account
+          match:
+            - json: $.user.email
+              value: '{{ email }}'
+  - name: 'Set cookie values'
+    flow:
+      - post:
+          url: /login
+          json:
+            email: '{{ email }}'
+            password: test-password-123
+      - post:
+          url: /set-state
+          cookie:
+            state: online
+      - get:
+          url: /state
+          match:
+            - json: $.currentState
+              value: online
+      - post:
+          url: /set-state
+          cookie:
+            state: busy
+      - get:
+          url: /state
+          match:
+            - json: $.currentState
+              value: busy

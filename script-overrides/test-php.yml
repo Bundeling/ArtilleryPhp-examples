@@ -1,0 +1,19 @@
+config:
+  target: 'https://artillery.io'
+  environments:
+    smoke:
+      phases:
+        - arrivalRate: 1
+          duration: 10
+    preprod:
+      phases:
+        - arrivalRate: 5
+          duration: 20
+    dynamic:
+      phases:
+        - arrivalRate: '{{ $processEnvironment.ARRIVAL_RATE }}'
+          duration: '{{ $processEnvironment.DURATION }}'
+scenarios:
+  - flow:
+      - get:
+          url: /

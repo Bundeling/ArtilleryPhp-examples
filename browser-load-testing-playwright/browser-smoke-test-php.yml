@@ -1,0 +1,14 @@
+config:
+  target: 'https://arftillery.io'
+  payload:
+    - path: ./pages.csv
+      fields:
+        - url
+  engines:
+    playwright: {  }
+  processor: ./flows.js
+scenarios:
+  - name: 'Check page'
+    engine: playwright
+    flowFunction: checkPage
+    flow: []

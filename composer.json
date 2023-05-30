@@ -1,0 +1,9 @@
+{
+    "name": "bundeling/artilleryphp-examples",
+    "require": {
+        "bundeling/artilleryphp": "dev-main"
+    },
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/Bundeling/ArtilleryPhp" }
+    ]
+}

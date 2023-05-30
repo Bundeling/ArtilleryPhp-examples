@@ -1,0 +1,20 @@
+config:
+  target: 'https://www.artillery.io'
+  payload:
+    - path: ./request-response.csv
+      fields:
+        - url
+        - code
+      loadAll: true
+      name: data
+  plugins:
+    expect: {  }
+scenarios:
+  - flow:
+      - loop:
+          - get:
+              url: '{{ $loopElement.url }}'
+              followRedirect: false
+              expect:
+                - statusCode: '{{ $loopElement.code }}'
+        over: data

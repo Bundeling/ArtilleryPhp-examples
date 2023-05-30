@@ -1,0 +1,21 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 600
+      arrivalRate: 25
+scenarios:
+  - name: 'Access the /common route'
+    weight: 6
+    flow:
+      - get:
+          url: /common
+  - name: 'Access the /average route'
+    weight: 3
+    flow:
+      - get:
+          url: /average
+  - name: 'Access the /rare route'
+    weight: 1
+    flow:
+      - get:
+          url: /rare
