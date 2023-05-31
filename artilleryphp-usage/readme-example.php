@@ -12,7 +12,7 @@ $artillery = Artillery::new('http://localhost:3000')
 	->setPlugin('expect');
 
 // You can also create one from a full or partial array representation:
-$artillery = $default = Artillery::fromArray([
+$artillery = Artillery::fromArray([
 	'config' => [
 		'target' => 'http://localhost:3000',
 		'phases' => [
@@ -27,7 +27,10 @@ $artillery = $default = Artillery::fromArray([
 	]
 ]);
 
-//Or from an existing Artillery instance with Artillery::from(artillery: Artillery):
+// And from an existing YAML file, or other Artillery instance:
+$file = __DIR__ . '/default-config.yml';
+$default = Artillery::fromYaml($file);
+
 $artillery = Artillery::from($default);
 
 // endregion
