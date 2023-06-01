@@ -1,9 +1,13 @@
 {
     "name": "bundeling/artilleryphp-examples",
     "require": {
+        "php": "^8.1",
         "bundeling/artilleryphp": "dev-main"
     },
     "repositories": [
         { "type": "vcs", "url": "https://github.com/Bundeling/ArtilleryPhp" }
-    ]
+    ],
+    "scripts": {
+        "build-examples": "./build_examples.sh"
+    }
 }
