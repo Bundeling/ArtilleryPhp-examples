@@ -9,6 +9,6 @@
     ],
     "scripts": {
         "build-examples": "./build_examples.sh",
-        "push-examples": "cs .. && ./update_examples.sh"
+        "push-examples": "cd .. && ./update_examples.sh"
     }
 }
