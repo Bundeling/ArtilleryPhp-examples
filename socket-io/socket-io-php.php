@@ -9,7 +9,7 @@ $artillery = Artillery::new('http://localhost:8080')
 $emitAndValidateResponse = Artillery::scenario('Emit and validate response')
     ->setEngine('socketio')
     ->addRequest(
-        Artillery::wsRequest('emit')
+        Artillery::anyRequest('emit')
             ->set('channel', 'echo')
             ->set('data', 'Hello from Artillery')
             ->set('response', ['channel' => 'echoResponse', 'data' => 'Hello from Artillery']));
@@ -17,7 +17,7 @@ $emitAndValidateResponse = Artillery::scenario('Emit and validate response')
 $emitAndValidateAcknowledgement = Artillery::scenario('Emit and validate acknowledgement')
     ->setEngine('socketio')
     ->addRequest(
-        Artillery::wsRequest('emit')
+        Artillery::anyRequest('emit')
             ->set('channel', 'userDetails')
             ->set('acknowledge', [ 'match' => ['json' => '$.0.name', 'value' => 'Artillery']]));
 

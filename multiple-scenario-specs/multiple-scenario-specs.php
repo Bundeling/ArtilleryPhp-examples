@@ -3,6 +3,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use ArtilleryPhp\Artillery;
 
+// Easily make your own conventions:
 $scenarios = ['armadillo', 'dino', 'pony'];
 $animal = $scenarios[1];
 
