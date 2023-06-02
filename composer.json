@@ -8,6 +8,7 @@
         { "type": "vcs", "url": "https://github.com/Bundeling/ArtilleryPhp" }
     ],
     "scripts": {
-        "build-examples": "./build_examples.sh"
+        "build-examples": "./build_examples.sh",
+        "push-examples": "./../update_examples.sh"
     }
 }
