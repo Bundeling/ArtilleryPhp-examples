@@ -7,31 +7,38 @@ use ArtilleryPhp\Artillery;
 
 //You can use Artillery::new($target) to get a new instance, and use the fluent interface to set config values:
 $artillery = Artillery::new('http://localhost:3000')
-	->addPhase(['duration' => 60, 'arrivalRate' => 5, 'rampTo' => 20], 'Warm up')
-	->addPhase(['duration' => 60, 'arrivalRate' => 20], 'Sustain')
-	->setPlugin('expect');
+    ->addPhase(['duration' => 60, 'arrivalRate' => 5, 'rampTo' => 20], 'Warm up')
+    ->addPhase(['duration' => 60, 'arrivalRate' => 20], 'Sustain')
+    ->setPlugin('expect')
+    ->setEnvironment('live', ['target' => 'https://www.example.com']);
 
 // You can also create one from a full or partial array representation:
 $artillery = Artillery::fromArray([
-	'config' => [
-		'target' => 'http://localhost:3000',
-		'phases' => [
-			['duration' => 60, 'arrivalRate' => 5, 'rampTo' => 20, 'name' => 'Warm up'],
-			['duration' => 60, 'arrivalRate' => 20, 'name' => 'Sustain'],
-		],
-		'plugins' => [
-			// To produce an empty object as "{  }", use stdClass.
-			// This is automatic when using setPlugin(s), setEngine(s) and setJson(s).
-			'expect' => new stdClass(),
-		]
-	]
+    'config' => [
+        'target' => 'http://localhost:3000',
+        'phases' => [
+            ['duration' => 60, 'arrivalRate' => 5, 'rampTo' => 20, 'name' => 'Warm up'],
+            ['duration' => 60, 'arrivalRate' => 20, 'name' => 'Sustain'],
+        ],
+        'plugins' => [
+            // To produce an empty object as "{  }", use stdClass.
+            // This is automatic when using setPlugin(s), setEngine(s) and setJson(s).
+            'expect' => new stdClass(),
+        ],
+        'environments' => [
+            'live' => [
+                'target' => 'https://www.example.com'
+            ]
+        ]
+    ]
 ]);
 
 // And from an existing YAML file, or other Artillery instance:
-$file = __DIR__ . '/default-config.yml';
-$default = Artillery::fromYaml($file);
+$config = Artillery::fromYaml(__DIR__ . '/default-config.yml');
+$environments = Artillery::fromYaml(__DIR__ . '/default-environments.yml');
 
-$artillery = Artillery::from($default);
+// New instance from the config, and merging in environments from another file:
+$artillery = Artillery::from($config)->merge($environments);
 
 // endregion
 
@@ -39,20 +46,20 @@ $artillery = Artillery::from($default);
 
 // Create some requests:
 $loginRequest = Artillery::request('get', '/login')
-	->addCapture('token', 'json', '$.token')
-	->addExpect('statusCode', 200)
-	->addExpect('contentType', 'json')
-	->addExpect('hasProperty', 'token');
+    ->addCapture('token', 'json', '$.token')
+    ->addExpect('statusCode', 200)
+    ->addExpect('contentType', 'json')
+    ->addExpect('hasProperty', 'token');
 
 $inboxRequest = Artillery::request('get', '/inbox')
-	->setQueryString('token', '{{ token }}')
-	->addExpect('statusCode', 200);
+    ->setQueryString('token', '{{ token }}')
+    ->addExpect('statusCode', 200);
 
 // Create a flow with the requests, and a 500ms delay between:
 $flow = Artillery::scenario()
-	->addRequest($loginRequest)
-	->addThink(0.5)
-	->addRequest($inboxRequest);
+    ->addRequest($loginRequest)
+    ->addThink(0.5)
+    ->addRequest($inboxRequest);
 
 // Let's loop the flow 10 times:
 $scenario = Artillery::scenario()->addLoop($flow, 10);

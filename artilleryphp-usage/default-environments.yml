@@ -1,0 +1,4 @@
+config:
+  environments:
+    live:
+      target: 'https://www.example.com'

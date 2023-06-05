@@ -10,6 +10,9 @@ config:
       name: Sustain
   plugins:
     expect: {  }
+  environments:
+    live:
+      target: 'https://www.example.com'
 scenarios:
   - flow:
       - loop:
