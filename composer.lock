@@ -4,49 +4,41 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c88792133f491ec15e697fe37b3ba00e",
+    "content-hash": "a0eae9ee277daa57aaf156c4403e4b68",
     "packages": [
         {
             "name": "bundeling/artilleryphp",
-            "version": "dev-main",
+            "version": "v0.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bundeling/ArtilleryPhp.git",
-                "reference": "ae89cb63084943cbadaa72767f35c01a71bc7a8d"
+                "reference": "786164c0ff3a4c0585535e19ca3309f73c1b6e8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bundeling/ArtilleryPhp/zipball/ae89cb63084943cbadaa72767f35c01a71bc7a8d",
-                "reference": "ae89cb63084943cbadaa72767f35c01a71bc7a8d",
+                "url": "https://api.github.com/repos/Bundeling/ArtilleryPhp/zipball/786164c0ff3a4c0585535e19ca3309f73c1b6e8f",
+                "reference": "786164c0ff3a4c0585535e19ca3309f73c1b6e8f",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
                 "symfony/yaml": "^5.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "ArtilleryPhp\\": "src/"
                 }
             },
-            "scripts": {
-                "doc": [
-                    "phpdoc -d src -t docs"
-                ],
-                "usage-example": [
-                    "php examples/usage/usage-example.php"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "Erik Sundlöf",
-                    "homepage": "https://github.com/Bundeling",
                     "email": "development@bundeling.com",
+                    "homepage": "https://github.com/Bundeling",
                     "role": "Developer"
                 }
             ],
@@ -67,10 +59,10 @@
             ],
             "support": {
                 "email": "development@bundeling.com",
-                "source": "https://github.com/Bundeling/ArtilleryPhp/tree/main",
-                "issues": "https://github.com/Bundeling/ArtilleryPhp/issues"
+                "issues": "https://github.com/Bundeling/ArtilleryPhp/issues",
+                "source": "https://github.com/Bundeling/ArtilleryPhp/tree/v0.9.1"
             },
-            "time": "2023-06-01T13:45:19+00:00"
+            "time": "2023-06-05T07:35:28+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -300,9 +292,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "bundeling/artilleryphp": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
